@@ -7,6 +7,7 @@ import { DUMMY_USERS } from './dummy-users';
 import { TasksComponent } from './tasks/tasks.component';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
+import { Task } from './tasks/task/task.model';
 
 @Component({
   selector: 'app-root',
@@ -19,16 +20,20 @@ export class AppComponent implements OnInit{
   http = inject(HttpClient);
   title = 'client';
   // users: any;
-  users = DUMMY_USERS;
+  users: User[] = [];
+  tasks: Task[] = [];
+  // users = DUMMY_USERS;
   selectedUserId?:string;
 
   ngOnInit(): void {
-    // this.http.get('https://localhost:5107/api/users').subscribe({
-    //   next: response => this.users = response,
-    //   error: error => console.log(error),
-    //   complete: () => console.log('Request has completed')
-    // });
-
+    this.http.get<User[]>('https://localhost:5107/api/users').subscribe({
+      next: response => this.users = response,
+      error: error => console.log(error),
+      complete: () => { 
+        console.log('Request has completed');
+        console.log(this.users);
+      }
+    });
   }
 
   get selectedUser() {
@@ -42,4 +47,13 @@ export class AppComponent implements OnInit{
       console.log('Selected user with id: ' + id);
   
     }
+
+    // private mapUsers(users: any[]): User[] {
+    //   // Transform the backend response to match the User interface if needed
+    //   return users.map(user => ({
+    //     id: user.id.toString(), // Ensure `id` is a string
+    //     avatar: user.avatar.toString(),
+    //     username: user.userName // Map the property name to match the interface
+    //   }));
+    // }
 }
