@@ -1,15 +1,46 @@
-<h1>{{title}}</h1>
-
-<ul>
-    <li *ngFor="let user of users">
-        {{user.id}} - {{user.userName}}
-    </li>
-</ul>
-
-<div class="row" style="width: 100px; height: 100px;">
-    <div class="col-4" style="background-color: aqua;"></div>
-    <div class="col-4" style="background-color: rgb(47, 48, 141);"></div>
-    <div class="col-4" style="background-color: rgb(114, 22, 79);"></div>
-</div>
+<app-header />
 
 
+<main>
+  <ul id="users">
+    @for (user of users; track user.id) {
+      <li>
+        <app-user 
+        [user]="user"
+        [selected]="user.id === selectedUserId"
+        (select)="onSelectUser($event)" />
+      </li>
+    }
+  
+    <!-- legacy way -->
+      <!-- <li *ngFor="let user of users">
+        <app-user 
+        [user]="user"
+        (select)="onSelectUser($event)" />
+      </li> -->
+   
+  </ul>
+
+  <div>
+    <!-- <app-tasks userName="{{userName}}" /> -->
+     @if (selectedUser) {
+      <app-tasks [userName]="selectedUser ? selectedUser.username: 'none'"
+      [userId]="selectedUser ? selectedUser.id: ''" /> 
+     } @else if(!selectedUser) {
+        <p id = "fallback">Select a user to see tasks!</p>
+     } @else {
+
+     }
+
+    
+     <!-- Legacy way -->
+      <!-- <app-tasks *ngIf="selectedUser; else fallback" [userName]="selectedUser ? selectedUser.name: 'none'" /> 
+     
+      <ng-template #fallback>
+        <p id = "fallback">Select a user to see tasks!</p>
+      </ng-template> -->
+    
+
+    
+  </div>
+</main>

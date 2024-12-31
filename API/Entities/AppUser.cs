@@ -8,4 +8,7 @@ public class AppUser
 
     public required string UserName { get; set; }
 
+     // Store the avatar as binary data
+     public byte[]? Avatar { get; set; }
+
 }
