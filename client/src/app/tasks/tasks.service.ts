@@ -61,22 +61,60 @@ export class TasksService {
     
       }
 
-      addTask(taskData: NewTaskData, userId: string) {
-        this.tasks.unshift({
-            id: new Date().getTime().toString(),
-            userId: userId,
-            title: taskData.title,
-            summary: taskData.summary,
-            dueDate: taskData.date,
-          });
+      // addTask(taskData: NewTaskData, userId: string) {
+      //   this.tasks.unshift({
+      //       id: new Date().getTime().toString(),
+      //       userId: userId,
+      //       title: taskData.title,
+      //       summary: taskData.summary,
+      //       dueDate: taskData.date,
+      //     });
 
-          this.saveTasks();
+      //     this.saveTasks();
+      // }
+
+      addTask(taskData: NewTaskData, userId: string): void {
+        // Prepare the task to be sent to the backend
+        const newTask = {
+          userId: parseInt(userId, 10),  // Ensure it's an integer
+          title: taskData.title, // Required
+          summary: taskData.summary || null, // Optional
+          dueDate: taskData.date, // Required
+        };
+      
+      
+        // Send a POST request to the backend
+        this.http.post<Task>('https://localhost:5107/api/tasks', newTask).subscribe({
+          next: (createdTask) => {
+            console.log('Task successfully created:', createdTask);
+            // Get the updated list of tasks from the backend
+            this.fetchTasks(); // Re-fetch tasks from the backend
+          },
+          error: (error) => {
+            console.log('Error creating task:', error);
+          }
+        });
       }
+      
 
-      removeTask(taskId: string) {
-        this.tasks = this.tasks.filter((task) => task.id !== taskId);
-        this.saveTasks();
+      // removeTask(taskId: string) {
+      //   this.tasks = this.tasks.filter((task) => task.id !== taskId);
+      //   this.saveTasks();
+      // 
+      // }
 
+      removeTask(taskId: string): void {
+        // Send a DELETE request to the backend
+        this.http.delete(`https://localhost:5107/api/tasks/${taskId}`).subscribe({
+          next: () => {
+            console.log(`Task with ID ${taskId} deleted successfully.`);
+            // Get the updated list of tasks from the backend
+            this.fetchTasks(); // Re-fetch tasks from the backend
+          },
+          error: (error) => {
+            console.log('Error deleting task:', error);
+          }
+        });
       }
 
       private saveTasks() {
