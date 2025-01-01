@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-new-task',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.css'
 })
@@ -30,14 +31,15 @@ export class NewTaskComponent {
   }
 
   onSubmit() {
-    const task = {
-      userId: this.userId,
-      title: this.enteredTitle,
-      summary: this.enteredSummary,
-      dueDate: this.enteredDate,
+    if (this.enteredTitle && this.enteredDate) {
+      const task = {
+        userId: this.userId,
+        title: this.enteredTitle,
+        summary: this.enteredSummary,
+        dueDate: this.enteredDate,
+      }
+      this.tasksService.addTask(task);
+      this.close.emit();
+      }
     }
-    this.tasksService.addTask(task);
-    this.close.emit();
-  }
-
 }

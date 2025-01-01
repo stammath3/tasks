@@ -13,7 +13,7 @@ export class TasksService {
  private tasksSubject = new BehaviorSubject<Task[]>([]);
  tasks$ = this.tasksSubject.asObservable(); // Observable to be used in the component
 
-  private subscription?: Subscription;
+  // private subscription?: Subscription;
 
    // Get tasks for a specific user by filtering tasks based on userId
    getUserTasks(userId: number) {
@@ -25,7 +25,8 @@ export class TasksService {
 
       fetchTasks(): void {
         console.log('TasksService initialized');
-        this.subscription = this.http.get<Task[]>(this.apiUrl).subscribe({
+        // this.subscription = 
+        this.http.get<Task[]>(this.apiUrl).subscribe({
           next: response => this.tasksSubject.next(response),
           error: error => console.log(error),
           complete: () => { 
