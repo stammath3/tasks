@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Task } from './task.model';
-import { TasksService } from '../tasks.service';
+import { TasksService } from '../../services/tasks.service';
 import { CardComponent } from '../../card/card.component';
 import { CommonModule } from "@angular/common";
 
@@ -17,6 +17,6 @@ export class TaskComponent {
   constructor(private taskService: TasksService) {}
 
   onCompleteTask() {
-    this.taskService.removeTask(this.task.id);
+    this.taskService.removeTask(this.task.id?? 0);
   }
 }

@@ -5,7 +5,7 @@
 // }
 
 export interface User {
-    id: string;
+    id: number;
     avatar: string | null;
     userName: string;
   }

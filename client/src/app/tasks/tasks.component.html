@@ -14,7 +14,11 @@
     </header>
 
     <ul>
-        @for (task of selectedUserTasks; track task.id) {
+        <!-- <li *ngFor="let task of selectedUserTasks | async">
+            <app-task [task]="task"></app-task>
+          </li> -->
+       
+          @for (task of selectedUserTasks | async; track task.id) {
             <!-- @if (task.userId === userId) {
             } -->
                 <li>
@@ -23,7 +27,7 @@
            
     
         }
-       
+
     </ul>
 
 

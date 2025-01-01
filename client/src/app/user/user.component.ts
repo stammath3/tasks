@@ -12,7 +12,7 @@ import { CardComponent } from '../card/card.component';
 export class UserComponent {
   @Input({ required: true }) user!: User;
   @Input({ required: true }) selected!: boolean;
-  @Output() select = new EventEmitter<string>();
+  @Output() select = new EventEmitter<number>();
   // select = output<string>();
 
   // imagePath = computed(() => {
