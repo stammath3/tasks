@@ -45,7 +45,7 @@ export class UsersService {
   }
 
   // Delete a user by ID
-  deleteUser(id: string): void {
+  deleteUser(id: number): void {
     const subscription = this.http.delete(`${this.apiUrl}/${id}`).subscribe({
       next: () => {
         console.log(`Deleted user with id: ${id}`);

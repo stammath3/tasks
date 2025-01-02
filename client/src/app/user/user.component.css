@@ -2,8 +2,8 @@ button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    background-color: transparent;
     padding: 0.35rem 0.5rem;
-    background-color: #433352;
     color: #c3b3d1;
     border: none;
     font: inherit;
@@ -13,17 +13,21 @@ button {
     text-align: left;
   }
   
-  button:hover,
-  button:active,
-  .activeButton {
-    background-color: #9965dd;
-    color: #150722;
+  .bin {
+    background-color: #433352;
+  }
+  .bin:hover {
+    background-color: #9965dd ;
   }
   
   img {
     width: 2rem;
     object-fit: contain;
     border-radius: 50%;
+    
+  }
+
+  .avatar {
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   }
   
@@ -33,3 +37,15 @@ button {
     font-size: 0.8rem;
     font-weight: normal;
   }
+
+  .selected {
+    background-color: #9965dd;  
+    color: #150722; 
+  }
+
+  .delete-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  

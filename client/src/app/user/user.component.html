@@ -1,9 +1,22 @@
 
 <app-card>
-    <button [class.activeButton]="selected" (click)="onSelectUser()">
-        <!-- property binding -->
-        <img [src]="user.avatar" [alt]="user.userName" />
-        <!-- string interpolation -->
-        <span>{{ user.userName }}</span>
-    </button>
+    <div class="row bin" [class.selected]="selected"  (click)="onSelectUser()" >
+        <div class="col-9">
+            <button  [class.selected]="selected" >
+                <!-- property binding -->
+                <img class="avatar" [src]="user.avatar" [alt]="user.userName" />
+                <!-- string interpolation -->
+                <span>{{ user.userName }}</span>
+            </button>
+        </div>
+        <div class="col-3"  style="align-content: center;" >
+            <img 
+            src="assets/bin.svg" 
+            alt="Delete User" 
+            class="delete-icon"
+            (click)="deleteUser(user.id!); $event.stopPropagation();" />
+        </div>
+    </div>
+   
+   
 </app-card>

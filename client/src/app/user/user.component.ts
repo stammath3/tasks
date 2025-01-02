@@ -1,6 +1,7 @@
 import { Component, computed, EventEmitter, Input, input, Output, output} from '@angular/core';
 import { User } from './user.model';
 import { CardComponent } from '../card/card.component';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-user',
@@ -13,6 +14,7 @@ export class UserComponent {
   @Input({ required: true }) user!: User;
   @Input({ required: true }) selected!: boolean;
   @Output() select = new EventEmitter<number>();
+  constructor( private usersService: UsersService ) {}
   // select = output<string>();
 
   // imagePath = computed(() => {
@@ -25,6 +27,12 @@ export class UserComponent {
 
   onSelectUser() {
     this.select.emit(this.user.id);
+  }
+
+  deleteUser(id: number): void {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.usersService.deleteUser(id);  // Call deleteUser from UsersService
+    }
   }
 
 }

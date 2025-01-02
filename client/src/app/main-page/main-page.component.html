@@ -1,3 +1,7 @@
+@if (isAddingUser) {
+  <app-new-user (close)="onCloseAddTask()"/>
+}
+
 <app-header />
 
 
@@ -11,6 +15,11 @@
             [user]="user"
             [selected]="user.id === selectedUserId"
             (select)="onSelectUser($event)" />
+            <!-- <img 
+              src="assets/bin.svg" 
+              alt="Delete User" 
+              class="delete-icon"
+              (click)="deleteUser(user.id!)" /> -->
           </li>
         }
       
@@ -32,7 +41,7 @@
  <!-- <app-tasks userName="{{userName}}" /> -->
  @if (selectedUser) {
   <app-tasks [userName]="selectedUser ? selectedUser.userName: 'none'"
-  [userId]="selectedUser ? selectedUser.id: 0" /> 
+  [userId]="selectedUser.id ? selectedUser.id: 0" /> 
  } @else if(!selectedUser) {
     <p id = "fallback">Select a user to see tasks!</p>
  } @else {

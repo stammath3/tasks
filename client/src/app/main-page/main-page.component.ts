@@ -9,12 +9,13 @@ import { User } from '../user/user.model';
 import { TasksService } from '../services/tasks.service';
 import { UsersService } from '../services/users.service';
 import { Task } from '../task/task.model';
+import { NewUserComponent } from '../user/new-user/new-user.component';
 
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [RouterOutlet, NgFor, TasksComponent, HeaderComponent, UserComponent],
+  imports: [RouterOutlet, NgFor, TasksComponent, NewUserComponent, HeaderComponent, UserComponent],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
@@ -22,6 +23,7 @@ export class MainPageComponent implements OnInit {
   users: User[] = [];
   tasks: Task[] = [];
   selectedUserId?:number;
+  isAddingUser:boolean = false;
 
   constructor(
     private usersService: UsersService,
@@ -71,6 +73,16 @@ export class MainPageComponent implements OnInit {
     }
 
     addUser() {
+      this.isAddingUser = true;
+    }
 
+    onCloseAddTask() {
+      this.isAddingUser = false;
+    }
+
+    deleteUser(id: number): void {
+      if (confirm('Are you sure you want to delete this user?')) {
+        this.usersService.deleteUser(id);  // Call deleteUser from UsersService
+      }
     }
 }
