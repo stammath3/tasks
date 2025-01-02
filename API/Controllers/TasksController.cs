@@ -5,12 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-[ApiController]
-[Route("api/[controller]")] // api/tasks
-//[controller] is a token that will be replaced by the name of the controller, in this case, Tasks (anything before the word "Controller")
-
 //using primary constructor to inject DataContext
-public class TasksController(DataContext context) : ControllerBase
+public class TasksController(DataContext context) : BaseApiController
 {
 
     [HttpGet]
