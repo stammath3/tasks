@@ -17,9 +17,8 @@ export class TasksService {
    // Get tasks for a specific user by filtering tasks based on userId
    getUserTasks(userId: number) {
     console.log('Getting tasks for user with id: ' + userId);
-    return this.tasksSubject$.pipe(
-      map(tasks => tasks.filter(task => task.userId === userId))
-    );
+    const tasks = this.tasksSubject$.value;
+    return tasks.filter(task => task.userId === userId);
   }
 
       fetchTasks(): void {

@@ -14,17 +14,12 @@ import { Task } from './task/task.model';
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent {
 @Input({ required: true }) userId!:number;
 @Input({ required: true }) userName!:string;
 isAddingTask:boolean = false;
 
 constructor(private tasksService: TasksService) { }
-
-ngOnInit(): void {
-  // Fetch tasks when the component is initialized
-  this.tasksService.fetchTasks();
-}
 
 // @Input() userName:string | undefined;
 

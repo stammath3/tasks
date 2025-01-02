@@ -2,45 +2,54 @@
 
 
 <main>
-  <ul id="users">
-    @for (user of users; track user.id) {
-      <li>
-        <app-user 
-        [user]="user"
-        [selected]="user.id === selectedUserId"
-        (select)="onSelectUser($event)" />
-      </li>
-    }
-  
-    <!-- legacy way -->
-      <!-- <li *ngFor="let user of users">
-        <app-user 
-        [user]="user"
-        (select)="onSelectUser($event)" />
-      </li> -->
+  <div class="row">
+    <div class="col-12">
+      <ul id="users">
+        @for (user of users; track user.id) {
+          <li>
+            <app-user 
+            [user]="user"
+            [selected]="user.id === selectedUserId"
+            (select)="onSelectUser($event)" />
+          </li>
+        }
+      
+        <!-- legacy way -->
+          <!-- <li *ngFor="let user of users">
+            <app-user 
+            [user]="user"
+            (select)="onSelectUser($event)" />
+          </li> -->
+          <button  (click)="addUser()">
+            Add User
+        </button>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+ <!-- <app-tasks userName="{{userName}}" /> -->
+ @if (selectedUser) {
+  <app-tasks [userName]="selectedUser ? selectedUser.userName: 'none'"
+  [userId]="selectedUser ? selectedUser.id: 0" /> 
+ } @else if(!selectedUser) {
+    <p id = "fallback">Select a user to see tasks!</p>
+ } @else {
+
+ }
+
+
+ <!-- Legacy way -->
+  <!-- <app-tasks *ngIf="selectedUser; else fallback" [userName]="selectedUser ? selectedUser.name: 'none'" /> 
+ 
+  <ng-template #fallback>
+    <p id = "fallback">Select a user to see tasks!</p>
+  </ng-template> -->
+
+
+
+    </div>
    
-  </ul>
-
-  <div>
-    <!-- <app-tasks userName="{{userName}}" /> -->
-     @if (selectedUser) {
-      <app-tasks [userName]="selectedUser ? selectedUser.userName: 'none'"
-      [userId]="selectedUser ? selectedUser.id: 0" /> 
-     } @else if(!selectedUser) {
-        <p id = "fallback">Select a user to see tasks!</p>
-     } @else {
-
-     }
-
-    
-     <!-- Legacy way -->
-      <!-- <app-tasks *ngIf="selectedUser; else fallback" [userName]="selectedUser ? selectedUser.name: 'none'" /> 
-     
-      <ng-template #fallback>
-        <p id = "fallback">Select a user to see tasks!</p>
-      </ng-template> -->
-    
-
-    
   </div>
 </main>

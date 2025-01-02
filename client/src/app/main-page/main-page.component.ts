@@ -68,4 +68,8 @@ export class MainPageComponent implements OnInit {
       console.log('Selected user with id: ' + id);
   
     }
+
+    addUser() {
+      
+    }
 }

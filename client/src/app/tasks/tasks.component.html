@@ -18,7 +18,7 @@
             <app-task [task]="task"></app-task>
           </li> -->
        
-          @for (task of selectedUserTasks | async; track task.id) {
+          @for (task of selectedUserTasks; track task.id) {
             <!-- @if (task.userId === userId) {
             } -->
                 <li>
