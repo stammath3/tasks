@@ -10,20 +10,34 @@ public class UsersController(DataContext context) : BaseApiController
 {
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
     {
-        var users = await context.Users.ToListAsync();
+          var users = await context.Users
+            .Select(user => new UserDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Avatar = user.Avatar
+            })
+            .ToListAsync();
 
-        return users;
+        return Ok(users);
     }
 
     [HttpGet("{id:int}")] // e.g. api/users/1
-    public async Task<ActionResult<AppUser>> GetUser(int id)
+    public async Task<ActionResult<UserDto>> GetUser(int id)
     {
         var user = await context.Users.FindAsync(id);
 
         if(user ==  null) return NotFound();
 
-        return user;
+        var userDto = new UserDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Avatar = user.Avatar
+            };
+
+        return Ok(userDto);
     }
 }
