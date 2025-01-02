@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Task } from './task.model';
-import { TasksService } from '../../services/tasks.service';
-import { CardComponent } from '../../card/card.component';
 import { CommonModule } from "@angular/common";
+import { TasksService } from '../services/tasks.service';
+import { CardComponent } from '../card/card.component';
 
 @Component({
   standalone: true,

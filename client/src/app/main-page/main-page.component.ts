@@ -8,7 +8,8 @@ import { UserComponent } from '../user/user.component';
 import { User } from '../user/user.model';
 import { TasksService } from '../services/tasks.service';
 import { UsersService } from '../services/users.service';
-import { Task } from '../tasks/task/task.model';
+import { Task } from '../task/task.model';
+
 
 @Component({
   selector: 'app-main-page',
@@ -70,6 +71,6 @@ export class MainPageComponent implements OnInit {
     }
 
     addUser() {
-      
+
     }
 }

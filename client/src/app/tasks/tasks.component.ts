@@ -1,10 +1,12 @@
 import { Component, Input, inject, OnInit } from '@angular/core';
 import { TasksService } from '../services/tasks.service';
 
-import { TaskComponent } from './task/task.component'; 
-import { NewTaskComponent } from './new-task/new-task.component';
+
+import { NewTaskComponent } from '../task/new-task/new-task.component';
 import { CommonModule, NgFor } from '@angular/common';
-import { Task } from './task/task.model';
+import { TaskComponent } from '../task/task.component';
+import { Task } from '../task/task.model';
+
 
 
 @Component({

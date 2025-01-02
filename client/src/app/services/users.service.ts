@@ -20,7 +20,6 @@ export class UsersService {
         error: (error) => console.log(error),
         complete: () => console.log('Fetched users:', this.usersSubject$.value),
       });
-
       this.destroyRef.onDestroy(() => {
         subscription.unsubscribe();
       });
@@ -30,5 +29,33 @@ export class UsersService {
       this.selectedUserId = id;
       console.log('Selected user with id:', id);
     }
+
+    // Create a new user
+  createUser(user: User): void {
+    const subscription = this.http.post<User>(this.apiUrl, user).subscribe({
+      next: (newUser) => {
+        console.log('Created user:', newUser);
+        this.fetchUsers(); // Refresh the user list after creating the user
+      },
+      error: (error) => console.error('Error creating user:', error),
+    });
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
+  }
+
+  // Delete a user by ID
+  deleteUser(id: string): void {
+    const subscription = this.http.delete(`${this.apiUrl}/${id}`).subscribe({
+      next: () => {
+        console.log(`Deleted user with id: ${id}`);
+        this.fetchUsers(); // Refresh the user list after deleting the user
+      },
+      error: (error) => console.error(`Error deleting user with id: ${id}`, error),
+    });
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
+  }
 
 }

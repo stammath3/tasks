@@ -40,4 +40,51 @@ public class UsersController(DataContext context) : BaseApiController
 
         return Ok(userDto);
     }
+
+    // Create a new user
+    [HttpPost]
+    public async Task<ActionResult<UserDto>> CreateUser(UserDto userDto)
+    {
+        // Map UserDto to AppUser
+        var user = new AppUser
+        {
+            UserName = userDto.UserName,
+            Avatar = userDto.Avatar
+        };
+
+        // Add the new user to the database
+        context.Users.Add(user);
+        await context.SaveChangesAsync();
+
+        // Set the ID for the DTO
+        userDto.Id = user.Id;
+
+        // Return the created user along with a 201 Created status
+        return CreatedAtAction(nameof(GetUser), new { id = userDto.Id }, userDto);
+    }
+
+    // Delete a user
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteUser(int id)
+    {
+        // Find the user by ID
+        var user = await context.Users.FindAsync(id);
+
+        if (user == null) return NotFound();
+
+        // Find all tasks associated with this user by UserId
+        var tasks = await context.Tasks.Where(t => t.UserId == id).ToListAsync();
+
+        // Remove all tasks associated with the user
+        context.Tasks.RemoveRange(tasks); 
+
+        // Remove the user
+        context.Users.Remove(user);
+
+        // Save changes to the database
+        await context.SaveChangesAsync();
+
+        // Return a successful response (No Content)
+        return NoContent();
+    }
 }

@@ -1,8 +1,9 @@
 import { DestroyRef, Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { Task } from '../tasks/task/task.model';
+
 import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
 import { environment } from "../shared/environment";
+import { Task } from "../task/task.model";
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
