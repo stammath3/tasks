@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, OnInit } from '@angular/core';
 import { TasksComponent } from '../tasks/tasks.component';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
@@ -24,7 +24,9 @@ export class MainPageComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private tasksService: TasksService
+    private tasksService: TasksService,
+    // private cdRef: ChangeDetectorRef,
+    private destroyRef: DestroyRef
   ) {}
 
   ngOnInit(): void {
@@ -35,16 +37,26 @@ export class MainPageComponent implements OnInit {
   // Fetch users from the UsersService
   fetchUsers(): void {
     this.usersService.fetchUsers(); // Fetch users via the service
-    this.usersService.users$.subscribe((users) => {
+    const subscription = this.usersService.usersSubject$.subscribe((users) => {
       this.users = users; // Update the users array when data is fetched
+      //if i had changeDetection: ChangeDetectionStrategy.OnPush, i need :
+      // this.cdRef.markForCheck();
+    });
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
     });
   }
 
   // Fetch tasks from the TasksService
   fetchTasks(): void {
     this.tasksService.fetchTasks(); // Fetch tasks via the service
-    this.tasksService.tasks$.subscribe((tasks) => {
+    const subscription = this.tasksService.tasksSubject$.subscribe((tasks) => {
       this.tasks = tasks; // Update the tasks array when data is fetched
+      //if i had changeDetection: ChangeDetectionStrategy.OnPush, i need :
+      // this.cdRef.markForCheck();
+    });
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
     });
   }
   get selectedUser() {
