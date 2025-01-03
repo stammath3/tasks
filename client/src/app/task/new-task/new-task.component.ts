@@ -33,7 +33,7 @@ export class NewTaskComponent {
   onSubmit() {
     if (this.enteredTitle && this.enteredDate) {
       const task = {
-        userId: this.userId,
+        appUserId: this.userId,
         title: this.enteredTitle,
         summary: this.enteredSummary,
         dueDate: this.enteredDate,

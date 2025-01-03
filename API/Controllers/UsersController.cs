@@ -1,25 +1,19 @@
 using API.Data;
 using API.Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
 //using primary constructor to inject DataContext
-public class UsersController(IUserRepository userRepository) : BaseApiController
+public class UsersController(IUserRepository userRepository, IMapper  mapper) : BaseApiController
 {
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
     {
         var users = await userRepository.GetUsersAsync();
-
-          var userDtos = users.Select(user => new UserDto
-        {
-            Id = user.Id,
-            UserName = user.UserName,
-            Avatar = user.Avatar
-        });
-
+        var userDtos = mapper.Map<IEnumerable<UserDto>>(users); 
         return Ok(userDtos);
     }
 
@@ -30,12 +24,7 @@ public class UsersController(IUserRepository userRepository) : BaseApiController
 
         if (user == null) return NotFound();
 
-        var userDto = new UserDto
-        {
-            Id = user.Id,
-            UserName = user.UserName,
-            Avatar = user.Avatar
-        };
+        var userDto = mapper.Map<UserDto>(user); 
 
         return Ok(userDto);
     }
@@ -44,11 +33,7 @@ public class UsersController(IUserRepository userRepository) : BaseApiController
     [HttpPost]
     public async Task<ActionResult<UserDto>> CreateUser(UserDto userDto)
     {
-         var user = new AppUser
-        {
-            UserName = userDto.UserName,
-            Avatar = userDto.Avatar
-        };
+        var user = mapper.Map<AppUser>(userDto); 
 
         var createdUser = await userRepository.CreateUserAsync(user);
 

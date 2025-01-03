@@ -7,9 +7,6 @@ public class TaskDto
     public int Id { get; set; }
 
     [Required]
-    public required int UserId { get; set; } // Foreign key to AppUser table
-
-    [Required]
     [MaxLength(200)]
     public required string Title { get; set; }
 
@@ -19,4 +16,6 @@ public class TaskDto
     [Required]
     [MaxLength(50)]
     public required string DueDate { get; set; }
+
+    public int AppUserId { get; set; } // Foreign key to AppUser table
 }

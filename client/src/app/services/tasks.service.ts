@@ -19,7 +19,8 @@ export class TasksService {
    getUserTasks(userId: number) {
     console.log('Getting tasks for user with id: ' + userId);
     const tasks = this.tasksSubject$.value;
-    return tasks.filter(task => task.userId === userId);
+    console.log(tasks);
+    return tasks.filter(task => task.appUserId === userId);
   }
 
       fetchTasks(): void {
