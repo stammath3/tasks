@@ -1,4 +1,6 @@
+using API.Data;
 using API.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,9 @@ if (app.Environment.IsDevelopment())
 // app.UseAuthorization();
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
     .WithOrigins("http://localhost:4200", "https://localhost:4200"));
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.MapControllers();
 
