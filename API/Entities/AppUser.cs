@@ -14,4 +14,7 @@ public class AppUser
     // Store the file path or URL to the avatar image
     [MaxLength(1000)]
     public string? Avatar { get; set; }
+
+    // Collection navigation containing dependents
+    public ICollection<AppTask> Tasks { get; set; } = new List<AppTask>();
 }

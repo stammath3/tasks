@@ -8,9 +8,6 @@ public class AppTask
       public int Id { get; set; } 
 
         [Required]
-        public required int UserId { get; set; } // Foreign key to AppUser table
-
-        [Required]
         [MaxLength(200)]
         public required string Title { get; set; }
 
@@ -20,5 +17,10 @@ public class AppTask
         [Required]
         [MaxLength(50)]
         public required string DueDate { get; set; } 
+
+        //Navigation properties
+        public int AppUserId { get; set; } // Foreign key to AppUser table
+
+        public AppUser AppUser { get; set; } =  null!; 
 
 }

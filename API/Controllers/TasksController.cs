@@ -15,7 +15,7 @@ public class TasksController(DataContext context) : BaseApiController
         var tasks = await context.Tasks.Select(task => new TaskDto
         {
             Id = task.Id,
-            UserId = task.UserId,
+            UserId = task.AppUserId,
             Title = task.Title,
             Summary = task.Summary,
             DueDate = task.DueDate
@@ -34,7 +34,7 @@ public class TasksController(DataContext context) : BaseApiController
         var taskDto = new TaskDto
             {
                 Id = task.Id,
-                UserId = task.UserId,
+                UserId = task.AppUserId,
                 Title = task.Title,
                 Summary = task.Summary,
                 DueDate = task.DueDate
@@ -49,7 +49,7 @@ public class TasksController(DataContext context) : BaseApiController
     {
        var task = new AppTask
         {
-            UserId = taskDto.UserId,
+            AppUserId = taskDto.UserId,
             Title = taskDto.Title,
             Summary = taskDto.Summary,
             DueDate = taskDto.DueDate

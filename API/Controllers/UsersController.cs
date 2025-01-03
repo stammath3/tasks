@@ -64,6 +64,7 @@ public class UsersController(DataContext context) : BaseApiController
     }
 
     // Delete a user
+    //It will automatically delete all tasks associated with the user with cascade delete
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteUser(int id)
     {
@@ -72,11 +73,11 @@ public class UsersController(DataContext context) : BaseApiController
 
         if (user == null) return NotFound();
 
-        // Find all tasks associated with this user by UserId
-        var tasks = await context.Tasks.Where(t => t.UserId == id).ToListAsync();
+        // // Find all tasks associated with this user by UserId
+        // var tasks = await context.Tasks.Where(t => t.UserId == id).ToListAsync();
 
-        // Remove all tasks associated with the user
-        context.Tasks.RemoveRange(tasks); 
+        // // Remove all tasks associated with the user
+        // context.Tasks.RemoveRange(tasks); 
 
         // Remove the user
         context.Users.Remove(user);
