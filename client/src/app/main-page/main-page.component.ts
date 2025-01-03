@@ -35,6 +35,7 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.fetchUsers();
     this.fetchTasks();
+    console.log("Deplyed in Azure.");
   }
 
   // Fetch users from the UsersService
