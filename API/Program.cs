@@ -20,7 +20,7 @@ if (app.Environment.IsDevelopment())
 
 // app.UseAuthorization();
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
-    .WithOrigins("http://localhost:4200", "https://localhost:4200"));
+    .WithOrigins("http://localhost:4200", "https://localhost:4200", "https://tasks-fullstack-app-a3fnb9f6cyf2cuca.northeurope-01.azurewebsites.net"));
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
