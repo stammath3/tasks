@@ -8,31 +8,46 @@
 <main>
   <div class="row">
     <div class="col-12">
-      <ul id="users">
-        @for (user of users; track user.id) {
-          <li>
-            <app-user 
-            [user]="user"
-            [selected]="user.id === selectedUserId"
-            (select)="onSelectUser($event)" />
-            <!-- <img 
-              src="assets/bin.svg" 
-              alt="Delete User" 
-              class="delete-icon"
-              (click)="deleteUser(user.id!)" /> -->
-          </li>
-        }
+      <div class="row">
+        <div class="col-12">
+          <ul id="users">
+        
+            @for (user of users; track user.id) {
+              <li>
+                <app-user 
+                [user]="user"
+                [selected]="user.id === selectedUserId"
+                (select)="onSelectUser($event)" />
+                <!-- <img 
+                  src="assets/bin.svg" 
+                  alt="Delete User" 
+                  class="delete-icon"
+                  (click)="deleteUser(user.id!)" /> -->
+              </li>
+            }
+         
+         
+        
+          <!-- legacy way -->
+            <!-- <li *ngFor="let user of users">
+              <app-user 
+              [user]="user"
+              (select)="onSelectUser($event)" />
+            </li> -->
       
-        <!-- legacy way -->
-          <!-- <li *ngFor="let user of users">
-            <app-user 
-            [user]="user"
-            (select)="onSelectUser($event)" />
-          </li> -->
-          <button  (click)="addUser()">
+        </ul>
+        </div>
+
+      </div>
+     
+      <div class="row" style="justify-content: center;">
+        <div class="col-12" style="padding-top: 4%;">
+          <button  (click)="addUser()" style="width: 100%;">
             Add User
-        </button>
-      </ul>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 

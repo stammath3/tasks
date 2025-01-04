@@ -61,3 +61,7 @@
       width: auto;
     }
   }
+
+  ::-webkit-scrollbar {
+    display: none !important; /* Hide scrollbar in Webkit browsers */
+  }
