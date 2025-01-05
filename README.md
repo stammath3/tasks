@@ -1,16 +1,16 @@
-# Tasks Fullstack App
+# Tasks Fullstack App 🚀
 
-## Overview
+## Overview 
 
 **Tasks Fullstack App** is a web application that allows users to manage tasks. The app enables adding, selecting, and deleting users, while allowing users to create and complete tasks. Each user has specific tasks associated with them, and tasks can be managed via an easy-to-use interface.
 
-### Key Features:
+### Key Features: ✨
 - Add, delete, and select users.
 - Create and complete tasks for selected users.
 - View tasks associated with a user in a list.
 - Interact with tasks: create and delete them.
 
-## Technologies Used:
+## Technologies Used: 🛠️
 - **Backend**: 
   - .NET (C#)
   - Entity Framework
@@ -38,7 +38,7 @@ This app is a full-stack application with a **frontend** and **backend**:
     - **Cypress**: For end-to-end testing of both the frontend UI and API interactions.
     - **Angular Services**: To communicate with the backend API.
 
-## Deployment
+## Deployment 📦
 
 Both the frontend and backend are deployed to **Azure**. The app is accessible through the following live link:
 - [App URL](https://tasks-fullstack-app-a3fnb9f6cyf2cuca.northeurope-01.azurewebsites.net/)
@@ -90,7 +90,7 @@ You can explore these endpoints and their details through **Swagger**.
     - **Git Ignore**: Contains files/folders excluded from being committed to version control (show .gitignore).
     - **Readme**: This file you are reading.
 
-## Local Development Setup
+## Local Development Setup 🌱
 
 To run the app locally, follow the steps below.
 
@@ -126,7 +126,7 @@ To run the app locally, follow the steps below.
 
 Visit http://localhost:4200 to view the application.
 
-### Automated Testing with Cypress
+### Automated Testing with Cypress 🧑‍💻
 
     - API and UI Tests: Tests are written using Cypress. 
     These tests ensure the correctness of both the frontend and backend. 
@@ -144,3 +144,5 @@ Thank you for checking out my Tasks Fullstack App! If you encounter any issues o
 - **Folder Structure**: Describes key folders and their contents.
 - **Testing**: Explains the automated tests using Cypress.
 - **Setup Instructions**: Gives instructions on how to set up and run the app locally.
+
+Enjoy! 🎉
