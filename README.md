@@ -23,7 +23,7 @@
   - HTML/CSS
   - Cypress (for testing)
 
-## Architecture:
+## Architecture: 🏗️
 This app is a full-stack application with a **frontend** and **backend**:
 
 1. **Backend Application**:
@@ -46,7 +46,7 @@ Both the frontend and backend are deployed to **Azure**. The app is accessible t
 Additionally, the app is continuously deployed using **GitHub Actions**. The workflow file is available at: 
 - [GitHub Actions](https://github.com/stammath3/tasks/actions)
 
-## Backend API Endpoints:
+## Backend API Endpoints: 🔌
 
 The backend provides several API endpoints to interact with users and tasks:
 
@@ -63,7 +63,7 @@ The backend provides several API endpoints to interact with users and tasks:
 
 You can explore these endpoints and their details through **Swagger**.
 
-## Folder Structure
+## Folder Structure 📁
 
 - **Backend**:
     - **Controllers**: Contains the API endpoints (show controllers).
@@ -136,7 +136,8 @@ Visit http://localhost:4200 to view the application.
 
 Thank you for checking out my Tasks Fullstack App! If you encounter any issues or have suggestions, please open an issue on GitHub.
 
-### Key Points Covered:
+### Key Points Covered: 📌
+
 - **Overview**: Explains the core functionality of your app (tasks and users).
 - **Technologies**: Mentions the frameworks and tools used (Angular, .NET Core, SQL Server, Cypress).
 - **Backend and Frontend Breakdown**: Discusses the structure and key parts of both the backend and frontend applications.
