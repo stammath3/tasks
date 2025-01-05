@@ -9,7 +9,7 @@ import { Task } from "../task/task.model";
 export class TasksService {
   constructor(private http: HttpClient, private destroyRef: DestroyRef) {}
   
-  private readonly apiUrl= `${environment.apiUrl}tasks`;
+  private readonly apiUrl= `${environment.apiUrl}/tasks`;
  // Use BehaviorSubject to store and emit tasks data
  public tasksSubject$ = new BehaviorSubject<Task[]>([]);
 

@@ -6,7 +6,7 @@ import { environment } from '../shared/environment';
 
 @Injectable({ providedIn: 'root' }) // This makes the service available throughout the app
 export class UsersService {
-  private readonly apiUrl= `${environment.apiUrl}users`;
+  private readonly apiUrl= `${environment.apiUrl}/users`;
   //Utilize DI to inject an instance of HttpClient
   constructor(private http: HttpClient, private destroyRef: DestroyRef) {}
   selectedUserId?: string;
