@@ -132,7 +132,7 @@ Visit http://localhost:4200 to view the application.
     These tests ensure the correctness of both the frontend and backend. 
     Run the tests using the command:
 
-    npm run cypress:open
+    npx cypress open
 
 Thank you for checking out my Tasks Fullstack App! If you encounter any issues or have suggestions, please open an issue on GitHub.
 
