@@ -1,6 +1,10 @@
 using API.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
+// Retrieve the connection string
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+                       Environment.GetEnvironmentVariable("SQLCONNSTR_DefaultConnection");
+
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
 
