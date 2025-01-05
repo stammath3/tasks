@@ -1,9 +1,8 @@
 
-using API.Data;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace API;
+namespace API.Data;
 
 public class TaskRepository(DataContext context) : ITaskRepository
 {
@@ -32,11 +31,5 @@ public class TaskRepository(DataContext context) : ITaskRepository
             context.Tasks.Remove(task);
             await context.SaveChangesAsync();
         }
-    }
-
-     // As long as that value is greater than zero, that means something has been saved.
-    public async Task<bool> SaveAllAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
     }
 }

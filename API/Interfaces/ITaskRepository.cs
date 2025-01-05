@@ -8,6 +8,5 @@ public interface ITaskRepository
     Task<AppTask?> GetTaskByIdAsync(int id);
     Task<AppTask> CreateTaskAsync(AppTask task);
     Task DeleteTaskAsync(int id);
-    Task<bool> SaveAllAsync();
 
 }

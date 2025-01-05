@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { TasksComponent } from '../tasks/tasks.component';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';

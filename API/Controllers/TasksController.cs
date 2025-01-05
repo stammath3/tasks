@@ -1,4 +1,4 @@
-using API.Data;
+using API.DTOs;
 using API.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +9,7 @@ namespace API.Controllers;
 public class TasksController(ITaskRepository taskRepository, IMapper mapper) : BaseApiController
 {
 
+    // Get a list of all tasks
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TaskDto>>> GetTasks()
     {
@@ -18,6 +19,7 @@ public class TasksController(ITaskRepository taskRepository, IMapper mapper) : B
         return Ok(taskDtos);
     }
 
+    // Get a task by id
     [HttpGet("{id:int}")] // e.g. api/tasks/1
     public async Task<ActionResult<TaskDto>> GetTask(int id)
     {
@@ -30,7 +32,7 @@ public class TasksController(ITaskRepository taskRepository, IMapper mapper) : B
         return Ok(taskDto);
     }
 
-
+    // Create a new task
     [HttpPost]
     public async Task<ActionResult<TaskDto>> CreateTask(TaskDto taskDto)
     {
@@ -43,6 +45,7 @@ public class TasksController(ITaskRepository taskRepository, IMapper mapper) : B
         return CreatedAtAction(nameof(GetTask), new { id = taskDto.Id }, taskDto);
     }
 
+    // Delete a task
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteTask(int id)
     {

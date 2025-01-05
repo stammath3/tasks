@@ -21,11 +21,7 @@ export class NewTaskComponent {
   enteredTitle = '';
   enteredSummary = '';
   enteredDate = '';
-
-  // enteredTitle = signal('');
-  // enteredSummary = signal('');
-  // enteredDate = signal('');
-
+  
   onCancel() {
     this.close.emit();
   }

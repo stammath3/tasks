@@ -1,5 +1,5 @@
 describe('Delete User Tests', () => {
-    const apiUrl = '/api/users'; // API endpoint for users
+    const apiUrl = '/api/users'; 
 
     var user: any;
   
@@ -30,13 +30,13 @@ describe('Delete User Tests', () => {
   
     // Approach 1: Delete User via API Request
     it('should delete a user via API', () => {
-      cy.wait(1000); // Wait for user creation if needed
+      cy.wait(1000); 
   
       // Delete the user using API request
       cy.request('DELETE', `${apiUrl}/${user.id}`).then((response) => {
         expect([200, 204]).to.include(response.status);
   
-        // Verify the user no longer exists in the API
+        // Verify the user no longer exists
         cy.request('GET', apiUrl).then((getResponse) => {
           expect(getResponse.body).to.not.include.deep.members([user]);
         });
@@ -67,13 +67,10 @@ describe('Delete User Tests', () => {
         }
       });
 
-      cy.wait(1000); // Wait for user creation if needed
+      cy.wait(1000);
   
-      // Step 1: Select the user from the UI (click on the last user)
+      // Step 1: Select the user from the UI
       cy.get('app-card').contains(user.userName).click();
-  
-      // Step 2: Verify that the user is selected
-    //   cy.get('button').contains(user.userName).should('have.class', 'selected');
   
       // Step 3: Click the "bin" icon to delete the user
       cy.get('button').contains(user.userName).parents('app-card').find('.delete-icon').click();

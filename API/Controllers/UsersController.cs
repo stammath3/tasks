@@ -1,4 +1,4 @@
-using API.Data;
+using API.DTOs;
 using API.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +9,7 @@ namespace API.Controllers;
 public class UsersController(IUserRepository userRepository, IMapper  mapper) : BaseApiController
 {
 
+    // Get a list of all users
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
     {
@@ -17,6 +18,7 @@ public class UsersController(IUserRepository userRepository, IMapper  mapper) : 
         return Ok(userDtos);
     }
 
+    // Get a user by id
     [HttpGet("{id:int}")] // e.g. api/users/1
     public async Task<ActionResult<UserDto>> GetUser(int id)
     {

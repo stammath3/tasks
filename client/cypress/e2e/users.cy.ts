@@ -1,12 +1,10 @@
 describe('Users API Tests', () => {
-    const apiUrl = '/api/users'; // Update this to match your endpoint
+    const apiUrl = '/api/users'; 
   
     it('should retrieve users with the correct structure and types', () => {
       cy.request('GET', apiUrl).then((response) => {
-        // Ensure the response status is 200
         expect(response.status).to.eq(200);
   
-        // Verify the response body is an array
         expect(response.body).to.be.an('array');
   
         if (response.body.length > 0) {

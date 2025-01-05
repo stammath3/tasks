@@ -1,3 +1,11 @@
+:host {
+  display: block;
+  height: 100vh;
+  background-image: linear-gradient(to right, #8E153E, #5F1B54, #48205E, #142F7C);
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+}
+
 main {
     width: 90%;
     max-width: 50rem;
@@ -44,7 +52,7 @@ main {
     button {
       font: inherit;
       cursor: pointer;
-      background-color: #9965dd;
+      background-color: #4a0774;
       border-radius: 4px;
       border: none;
       padding: 0.35rem 0.8rem;

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace API;
+namespace API.DTOs;
 
 public class TaskDto
 {
@@ -17,5 +17,5 @@ public class TaskDto
     [MaxLength(50)]
     public required string DueDate { get; set; }
 
-    public int AppUserId { get; set; } // Foreign key to AppUser table
+    public int AppUserId { get; set; }
 }

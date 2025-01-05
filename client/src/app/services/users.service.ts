@@ -1,6 +1,6 @@
 import { DestroyRef, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { User } from '../user/user.model';
 import { environment } from '../shared/environment';
 

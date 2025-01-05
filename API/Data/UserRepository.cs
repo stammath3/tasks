@@ -1,9 +1,8 @@
 
-using API.Data;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace API;
+namespace API.Data;
 
 public class UserRepository(DataContext context) : IUserRepository
 {
@@ -33,11 +32,5 @@ public class UserRepository(DataContext context) : IUserRepository
             context.Users.Remove(user);
             await context.SaveChangesAsync();
         }
-    }
-
-    // As long as that value is greater than zero, that means something has been saved.
-    public async Task<bool> SaveAllAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
     }
 }
