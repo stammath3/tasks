@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { TasksComponent } from '../tasks/tasks.component';
-import { RouterOutlet } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { Router, RouterOutlet } from '@angular/router';
+import { CommonModule, NgFor } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { UserComponent } from '../user/user.component';
 
@@ -10,12 +10,13 @@ import { TasksService } from '../services/tasks.service';
 import { UsersService } from '../services/users.service';
 import { Task } from '../task/task.model';
 import { NewUserComponent } from '../user/new-user/new-user.component';
+import {  FormGroup, FormControl, ReactiveFormsModule, FormBuilder, FormArray } from '@angular/forms';
 
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [RouterOutlet, NgFor, TasksComponent, NewUserComponent, HeaderComponent, UserComponent],
+  imports: [RouterOutlet, NgFor, TasksComponent, NewUserComponent, HeaderComponent, UserComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
@@ -29,8 +30,10 @@ export class MainPageComponent implements OnInit {
     private usersService: UsersService,
     private tasksService: TasksService,
     // private cdRef: ChangeDetectorRef,
-    private destroyRef: DestroyRef
-  ) {}
+    private destroyRef: DestroyRef,
+    private router: Router,
+  ) { }
+  
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -86,4 +89,9 @@ export class MainPageComponent implements OnInit {
         this.usersService.deleteUser(id);  // Call deleteUser from UsersService
       }
     }
+
+    goToPage(page: string): void {
+      this.router.navigate([`/${page}`]);
+    }
+
 }
