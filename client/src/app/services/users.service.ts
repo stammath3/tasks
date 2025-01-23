@@ -12,7 +12,9 @@ export class UsersService {
   selectedUserId?: string;
 
   // Use BehaviorSubject to store and emit users data
-  public usersSubject$ = new BehaviorSubject<User[]>([]);
+  private usersSubject$ = new BehaviorSubject<User[]>([]);
+  // Public read-only Observable to expose the state
+  public users$ = this.usersSubject$.asObservable(); // Expose as read-only observable
 
     fetchUsers(): void {
       const subscription = this.http.get<User[]>(this.apiUrl).subscribe({
@@ -35,7 +37,8 @@ export class UsersService {
     const subscription = this.http.post<User>(this.apiUrl, user).subscribe({
       next: (newUser) => {
         console.log('Created user:', newUser);
-        this.fetchUsers(); // Refresh the user list after creating the user
+        const currentUsers = this.usersSubject$.value;
+        this.usersSubject$.next([...currentUsers, newUser]); // Add new user to the current state
       },
       error: (error) => console.error('Error creating user:', error),
     });
@@ -49,7 +52,10 @@ export class UsersService {
     const subscription = this.http.delete(`${this.apiUrl}/${id}`).subscribe({
       next: () => {
         console.log(`Deleted user with id: ${id}`);
-        this.fetchUsers(); // Refresh the user list after deleting the user
+        const currentUsers = this.usersSubject$.value;
+          this.usersSubject$.next(
+            currentUsers.filter((user) => user.id !== id)
+          ); // Remove user from the current state
       },
       error: (error) => console.error(`Error deleting user with id: ${id}`, error),
     });

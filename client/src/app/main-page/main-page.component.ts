@@ -44,7 +44,7 @@ export class MainPageComponent implements OnInit {
   // Fetch users from the UsersService
   fetchUsers(): void {
     this.usersService.fetchUsers(); // Fetch users via the service
-    const subscription = this.usersService.usersSubject$.subscribe((users) => {
+    const subscription = this.usersService.users$.subscribe((users) => {
       this.users = users; // Update the users array when data is fetched
       //if i had changeDetection: ChangeDetectionStrategy.OnPush, i need :
       // this.cdRef.markForCheck();
@@ -57,7 +57,7 @@ export class MainPageComponent implements OnInit {
   // Fetch tasks from the TasksService
   fetchTasks(): void {
     this.tasksService.fetchTasks(); // Fetch tasks via the service
-    const subscription = this.tasksService.tasksSubject$.subscribe((tasks) => {
+    const subscription = this.tasksService.tasks$.subscribe((tasks) => {
       this.tasks = tasks; // Update the tasks array when data is fetched
       //if i had changeDetection: ChangeDetectionStrategy.OnPush, i need :
       // this.cdRef.markForCheck();
