@@ -46,6 +46,37 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install Cypress dependencies
+        run: |
+          cd client
+          npm install
+          npx cypress install
+
+      - name: Run Cypress tests
+        env:
+          # Required for Cypress to run in CI mode
+          CYPRESS_BASE_URL: https://tasks-fullstack-app-a3fnb9f6cyf2cuca.northeurope-01.azurewebsites.net 
+        run: |
+          cd client
+          npx cypress run --headless --browser chrome
+          
+      - name: Upload Cypress test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-results
+          path: client/cypress/videos/
 
   deploy:
     runs-on: windows-latest
