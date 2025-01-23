@@ -8,7 +8,7 @@ describe('Create User Tests', () => {
   
     it('should create a user programmatically via API', () => {
       const newUser = {
-        userName: 'NewUser123',
+        userName: 'NewUserCypress',
         avatar: 'assets/users/user-2.jpg', 
       };
   

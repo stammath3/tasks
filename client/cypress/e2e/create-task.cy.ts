@@ -14,7 +14,7 @@ describe('Create Task for User', () => {
           if (response.body.length === 0) {
             // If no users exist, create a new one
             const newUser = {
-              userName: 'NewUser123',
+              userName: 'NewUserCypress',
               avatar: 'assets/users/user-4.jpg',  // Optional field
             };
   
