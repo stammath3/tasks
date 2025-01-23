@@ -39,7 +39,7 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 // Add a test route that logs structured data
-app.MapGet("/", () =>
+app.MapGet("/testRoute", () =>
 {
     Log.Information("This is a log message with structured data. Example: {OrderId}, {UserId}", 123, "user1");
     return "Hello, Serilog with Prometheus!";
