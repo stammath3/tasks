@@ -2,6 +2,7 @@ using API.DTOs;
 using API.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace API.Controllers;
 
@@ -15,7 +16,7 @@ public class TasksController(ITaskRepository taskRepository, IMapper mapper) : B
     {
         var tasks = await taskRepository.GetAllTasksAsync();
         var taskDtos = mapper.Map<IEnumerable<TaskDto>>(tasks);
-
+        Log.Information("Getting tasks {@taskDtos} ", taskDtos);
         return Ok(taskDtos);
     }
 
